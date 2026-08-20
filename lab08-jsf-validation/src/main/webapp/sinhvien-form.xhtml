@@ -1,0 +1,38 @@
+<ui:composition template="/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets">
+    <ui:define name="content">
+        <h:panelGroup rendered="#{!loginBean.loggedIn}">
+            <h3 style="color:red;">Bạn phải đăng nhập mới có quyền thêm/sửa sinh viên!</h3>
+            <p><h:link outcome="login" value="Đăng nhập ngay" /></p>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{loginBean.loggedIn}">
+            <h2>#{sinhVienBean.editMode ? 'Sửa thông tin sinh viên' : 'Thêm sinh viên mới'}</h2>
+            <h:messages globalOnly="true" style="color:green" />
+            <h:form>
+                <p>Mã SV:
+                    <h:inputText id="ma" value="#{sinhVienBean.sinhVien.maSinhVien}" required="true" requiredMessage="Mã SV không được trống" />
+                    <h:message for="ma" style="color:red" />
+                </p>
+                <p>Họ tên:
+                    <h:inputText id="hoten" value="#{sinhVienBean.sinhVien.hoTen}" />
+                    <h:message for="hoten" style="color:red" />
+                </p>
+                <p>Email:
+                    <h:inputText id="email" value="#{sinhVienBean.sinhVien.email}" />
+                    <h:message for="email" style="color:red" />
+                </p>
+                <p>Lớp:
+                    <h:selectOneMenu id="lop" value="#{sinhVienBean.sinhVien.lop}">
+                        <f:selectItems value="#{sinhVienBean.dsLop}" />
+                    </h:selectOneMenu>
+                    <h:message for="lop" style="color:red" />
+                </p>
+                <h:commandButton value="#{sinhVienBean.editMode ? 'Cập nhật' : 'Lưu sinh viên'}" action="#{sinhVienBean.save}" />
+            </h:form>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>

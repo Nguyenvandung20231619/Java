@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title><ui:insert name="title">Lab 8 - JSF Application</ui:insert></title>
+</h:head>
+<h:body>
+    <div id="header">
+        <ui:include src="/templates/header.xhtml" />
+    </div>
+    <hr/>
+    <div id="content">
+        <ui:insert name="content" />
+    </div>
+    <hr/>
+    <div id="footer">
+        <ui:include src="/templates/footer.xhtml" />
+    </div>
+</h:body>
+</html>

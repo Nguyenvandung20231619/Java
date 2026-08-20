@@ -1,0 +1,28 @@
+<ui:composition template="/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets">
+    <ui:define name="content">
+        <h2>Quản lý Sản phẩm</h2>
+        <h:messages globalOnly="true" style="color:green" />
+        <h:panelGroup rendered="#{!loginBean.loggedIn}">
+            <h3 style="color:red;">Bạn phải đăng nhập mới có quyền lưu sản phẩm!</h3>
+            <h:link outcome="login" value="Đăng nhập ngay" />
+        </h:panelGroup>
+        <h:form rendered="#{loginBean.loggedIn}">
+            <p>Tên SP: <h:inputText id="ten" value="#{productBean.product.tenSp}" /><h:message for="ten" style="color:red" /></p>
+            <p>Giá: <h:inputText id="gia" value="#{productBean.product.gia}" /><h:message for="gia" style="color:red" /></p>
+            <p>Số lượng: <h:inputText id="sl" value="#{productBean.product.soLuong}" /><h:message for="sl" style="color:red" /></p>
+            <h:commandButton value="Lưu sản phẩm" action="#{productBean.save}" />
+        </h:form>
+
+        <h3>Danh sách sản phẩm</h3>
+        <h:dataTable value="#{productBean.dsProduct}" var="p" border="1" cellpadding="5">
+            <h:column><f:facet name="header">ID</f:facet>#{p.id}</h:column>
+            <h:column><f:facet name="header">Tên sản phẩm</f:facet>#{p.tenSp}</h:column>
+            <h:column><f:facet name="header">Giá</f:facet>#{p.gia}</h:column>
+            <h:column><f:facet name="header">Số lượng</f:facet>#{p.soLuong}</h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,19 @@
+<ui:composition template="/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets">
+    <ui:define name="content">
+        <h2>Đăng nhập hệ thống</h2>
+        <h:messages style="color:red" />
+        <h:form rendered="#{!loginBean.loggedIn}">
+            <p>Username: <h:inputText value="#{loginBean.username}" required="true" requiredMessage="Chưa nhập username" /></p>
+            <p>Password: <h:inputSecret value="#{loginBean.password}" required="true" requiredMessage="Chưa nhập password" /></p>
+            <h:commandButton value="Đăng nhập" action="#{loginBean.login}" />
+            <p style="color:gray;">(Tài khoản mặc định: admin / 123456)</p>
+        </h:form>
+        <h:form rendered="#{loginBean.loggedIn}">
+            <p>Xin chào, <b>#{loginBean.username}</b>! Bạn đã đăng nhập thành công.</p>
+            <h:commandButton value="Đăng xuất" action="#{loginBean.logout}" />
+        </h:form>
+    </ui:define>
+</ui:composition>

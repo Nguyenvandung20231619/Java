@@ -1,0 +1,28 @@
+<ui:composition template="/templates/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:ui="jakarta.faces.facelets">
+    <ui:define name="content">
+        <h2>Quản lý Sách</h2>
+        <h:messages globalOnly="true" style="color:green" />
+        <h:panelGroup rendered="#{!loginBean.loggedIn}">
+            <h3 style="color:red;">Bạn phải đăng nhập mới có quyền lưu sách!</h3>
+            <h:link outcome="login" value="Đăng nhập ngay" />
+        </h:panelGroup>
+        <h:form rendered="#{loginBean.loggedIn}">
+            <p>Tên sách: <h:inputText id="ten" value="#{sachBean.sach.tenSach}" /><h:message for="ten" style="color:red" /></p>
+            <p>Tác giả: <h:inputText id="tg" value="#{sachBean.sach.tacGia}" /><h:message for="tg" style="color:red" /></p>
+            <p>Năm xuất bản: <h:inputText id="nxb" value="#{sachBean.sach.namXuatBan}" /><h:message for="nxb" style="color:red" /></p>
+            <h:commandButton value="Lưu sách" action="#{sachBean.save}" />
+        </h:form>
+
+        <h3>Danh sách sách</h3>
+        <h:dataTable value="#{sachBean.dsSach}" var="s" border="1" cellpadding="5">
+            <h:column><f:facet name="header">ID</f:facet>#{s.id}</h:column>
+            <h:column><f:facet name="header">Tên sách</f:facet>#{s.tenSach}</h:column>
+            <h:column><f:facet name="header">Tác giả</f:facet>#{s.tacGia}</h:column>
+            <h:column><f:facet name="header">Năm XB</f:facet>#{s.namXuatBan}</h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>

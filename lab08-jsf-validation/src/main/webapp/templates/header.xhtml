@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets">
+    <h:form>
+        <h:link outcome="sinhvien-list" value="Danh sách SV" /> | 
+        <h:link outcome="sach-form" value="Sách" /> | 
+        <h:link outcome="product-form" value="Sản phẩm" />
+        
+        <h:panelGroup rendered="#{loginBean.loggedIn}">
+             | <h:link outcome="sinhvien-form" value="Thêm SV" />
+        </h:panelGroup>
+        
+         | 
+        <h:panelGroup rendered="#{!loginBean.loggedIn}">
+            <h:link outcome="login" value="Đăng nhập" />
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="#{loginBean.loggedIn}">
+            <span>Xin chào, <b>#{loginBean.username}</b></span> 
+            (<h:commandLink value="Đăng xuất" action="#{loginBean.logout}" />)
+        </h:panelGroup>
+    </h:form>
+</ui:composition>
