@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <display-name>Lab 09 JPA Repository</display-name>
+    <servlet>
+        <servlet-name>SinhVienController</servlet-name>
+        <servlet-class>vn.edu.eaut.lab9.controller.SinhVienController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SinhVienController</servlet-name>
+        <url-pattern>/sinh-vien</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
