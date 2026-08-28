@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${isEdit} ? 'Sửa Khóa học' : 'Thêm Khóa học'"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="content">
+        <h2 th:text="${isEdit} ? 'Cập nhật Khóa học' : 'Thêm Khóa học mới'"></h2>
+        <form th:action="@{/courses/save}" th:object="${course}" method="post">
+            <p>
+                <label>Mã Khóa học:</label><br/>
+                <input type="text" th:field="*{courseCode}" th:readonly="${isEdit}" required/>
+            </p>
+            <p>
+                <label>Tên Khóa học:</label><br/>
+                <input type="text" th:field="*{courseName}" required/>
+            </p>
+            <p>
+                <label>Số tín chỉ:</label><br/>
+                <input type="number" th:field="*{credits}" required/>
+            </p>
+            <button type="submit">Lưu lại</button>
+            <a th:href="@{/courses}">Hủy bỏ</a>
+        </form>
+    </div>
+</body>
+</html>

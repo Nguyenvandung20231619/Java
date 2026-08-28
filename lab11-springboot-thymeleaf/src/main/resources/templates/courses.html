@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Khóa học</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a th:href="@{/}">Trang chủ</a>
+            <a th:href="@{/about}">Giới thiệu</a>
+            <a th:href="@{/students}">Quản lý Sinh viên</a>
+            <a th:href="@{/courses}">Quản lý Khóa học</a>
+            <a th:href="@{/contact}">Liên hệ</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h2>Danh sách Khóa học</h2>
+        <p><a th:href="@{/courses/new}" class="btn">+ Thêm Khóa học mới</a></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Mã Môn</th>
+                    <th>Tên Môn Học</th>
+                    <th>Số Tín Chỉ</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${courses}">
+                    <td th:text="${c.courseCode}"></td>
+                    <td th:text="${c.courseName}"></td>
+                    <td th:text="${c.credits}"></td>
+                    <td>
+                        <a th:href="@{/courses/edit/{id}(id=${c.courseCode})}">Sửa</a> |
+                        <a th:href="@{/courses/delete/{id}(id=${c.courseCode})}" 
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

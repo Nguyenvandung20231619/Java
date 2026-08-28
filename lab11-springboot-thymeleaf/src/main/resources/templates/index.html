@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Trang chủ</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a th:href="@{/}">Trang chủ</a>
+            <a th:href="@{/about}">Giới thiệu</a>
+            <a th:href="@{/students}">Quản lý Sinh viên</a>
+            <a th:href="@{/courses}">Quản lý Khóa học</a>
+            <a th:href="@{/contact}">Liên hệ</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h1 th:text="${message}"></h1>
+        <p>Hệ thống Quản lý Sinh viên xây dựng bằng Spring Boot, JPA & Thymeleaf - Lab 11.</p>
+    </div>
+</body>
+</html>
