@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sinh viên</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Danh Sách Sinh Viên</h2>
+    
+    <!-- Bài 9: Tìm kiếm -->
+    <form th:action="@{/students}" method="get" class="search-box">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="Nhập tên sinh viên cần tìm...">
+        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        <a th:href="@{/students}" class="btn btn-secondary">Tải lại</a>
+    </form>
+
+    <p><a th:href="@{/students/create}" class="btn">+ Thêm sinh viên mới</a></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Mã SV</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Lớp</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="s : ${students}">
+                <td th:text="${s.id}"></td>
+                <td th:text="${s.studentCode}"></td>
+                <td th:text="${s.fullName}"></td>
+                <td th:text="${s.email}"></td>
+                <td th:text="${s.className}"></td>
+                <td>
+                    <a th:href="@{/students/detail/{id}(id=${s.id})}" class="btn btn-primary">Xem</a>
+                    <a th:href="@{/students/edit/{id}(id=${s.id})}" class="btn">Sửa</a>
+                    <a th:href="@{/students/delete/{id}(id=${s.id})}" class="btn btn-danger"
+                       onclick="return confirm('Xác nhận xóa sinh viên này?')">Xóa</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(students)}">
+                <td colspan="6" style="text-align: center;">Không tìm thấy dữ liệu.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
