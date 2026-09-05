@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form môn học</title>
+</head>
+<body>
+    <h2>Thêm / Sửa môn học</h2>
+
+    <form th:action="@{/courses/save}" th:object="${course}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Mã môn</label>
+        <input type="text" th:field="*{courseCode}">
+        <br/>
+
+        <label>Tên môn</label>
+        <input type="text" th:field="*{courseName}">
+        <br/>
+
+        <label>Số tín chỉ</label>
+        <input type="number" th:field="*{credit}">
+        <br/>
+
+        <button type="submit">Lưu</button>
+        <a th:href="@{/courses}">Hủy</a>
+    </form>
+</body>
+</html>

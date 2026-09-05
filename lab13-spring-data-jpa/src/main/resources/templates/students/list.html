@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sinh viên</title>
+</head>
+<body>
+    <h2>Danh sách sinh viên</h2>
+
+    <form method="get" th:action="@{/students}">
+        <input type="text" name="keyword" th:value="${keyword}" placeholder="Tìm theo họ tên"/>
+        <button type="submit">Tìm</button>
+        <a th:href="@{/students}">Xóa lọc</a>
+    </form>
+
+    <a th:href="@{/students/create}">+ Thêm sinh viên</a>
+
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>ID</th><th>Mã SV</th><th>Họ tên</th><th>Email</th><th>Lớp</th><th>Thao tác</th>
+        </tr>
+        <tr th:each="s : ${students}">
+            <td th:text="${s.id}"></td>
+            <td th:text="${s.studentCode}"></td>
+            <td th:text="${s.fullName}"></td>
+            <td th:text="${s.email}"></td>
+            <td th:text="${s.className}"></td>
+            <td>
+                <a th:href="@{/students/edit/{id}(id=${s.id})}">Sửa</a> |
+                <a th:href="@{/students/delete/{id}(id=${s.id})}"
+                   onclick="return confirm('Xóa sinh viên này?');">Xóa</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

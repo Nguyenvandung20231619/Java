@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form sinh viên</title>
+</head>
+<body>
+    <h2>Thêm / Sửa sinh viên</h2>
+
+    <form th:action="@{/students/save}" th:object="${student}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Mã sinh viên</label>
+        <input type="text" th:field="*{studentCode}">
+        <span th:if="${#fields.hasErrors('studentCode')}" th:errors="*{studentCode}" style="color:red"></span>
+        <br/>
+
+        <label>Họ tên</label>
+        <input type="text" th:field="*{fullName}">
+        <br/>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}">
+        <br/>
+
+        <label>Lớp</label>
+        <input type="text" th:field="*{className}">
+        <br/>
+
+        <button type="submit">Lưu</button>
+        <a th:href="@{/students}">Hủy</a>
+    </form>
+</body>
+</html>
