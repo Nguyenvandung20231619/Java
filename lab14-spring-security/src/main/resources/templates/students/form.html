@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm sinh viên</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        .form-box { max-width: 420px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; box-sizing: border-box; }
+        button, a { padding: 8px 14px; border: 0; border-radius: 4px; text-decoration: none; cursor: pointer; }
+        button { background: #28a745; color: white; }
+        a { background: #6c757d; color: white; }
+    </style>
+</head>
+<body>
+<div class="form-box">
+    <h2>THÊM SINH VIÊN</h2>
+    <form th:action="@{/students/save}" th:object="${student}" method="post">
+        <div class="form-group">
+            <label for="studentCode">Mã sinh viên:</label>
+            <input id="studentCode" type="text" th:field="*{studentCode}" required>
+        </div>
+        <div class="form-group">
+            <label for="fullName">Họ và tên:</label>
+            <input id="fullName" type="text" th:field="*{fullName}" required>
+        </div>
+        <button type="submit">Lưu sinh viên</button>
+        <a th:href="@{/students}">Hủy</a>
+    </form>
+</div>
+</body>
+</html>
